@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import calendar
 
-
+#Define a dictionary where the Key is a string of the city name and the value is the corresponding CSV data file
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -68,7 +68,7 @@ def load_data(city, month, day):
 
     # load data file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
-    
+
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
@@ -89,20 +89,20 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[df['day_of_week'] == day.title()]
-    
-  
-    return df    
+
+
+    return df
 
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-    
+
     # TO DO: display the most common month
     common_month = df['month'].mode()[0]
     print("The most commen month of travel is {}".format(calendar.month_name[common_month]))
-    
+
     # TO DO: display the most common day of week
     common_dow = df['day_of_week'].mode()[0]
     print("The most commen day of the week is {}".format(common_dow))
@@ -111,7 +111,7 @@ def time_stats(df):
     df['Start hour'] = df['Start Time'].dt.hour
     common_start_hour = df['Start hour'].mode()[0]
     print("The most common start hour is {}".format(common_start_hour))
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -122,7 +122,7 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
     #Concatenation of start and end of stattions into a new column
-    df['Trip Direction']= 'From ' + df['Start Station'] +' '+'To '+df['End Station'] 
+    df['Trip Direction']= 'From ' + df['Start Station'] +' '+'To '+df['End Station']
     # TO DO: display most commonly used start station
     common_start = df['Start Station'].mode()[0]
     print("The most commonly used start station is: {}".format(common_start))
@@ -166,7 +166,7 @@ def user_stats(df):
     user_types_count =df['User Type'].value_counts()
     print("Count for each type of user is:\n{}".format(user_types_count))
     while True:
-        try:  
+        try:
     # TO DO: Display counts of gender
      # TO DO: Display earliest, most recent, and most common year of birth
             gender_count =df['Gender'].value_counts()
@@ -175,8 +175,8 @@ def user_stats(df):
         except KeyError:
             print("Sorry, gender calculations are not available for the city you've chosen")
             break
-            
-   
+
+
 
     # TO DO: Display earliest, most recent, and most common year of birth
     while True:
@@ -196,14 +196,14 @@ def display_raw_data(df):
     #Get input from user whether they want to see the raw data or not
     display_raw_data= input("Do you want to see raw data?yes/no\n")
     i=0 #start location to display raw data
-    j=5 #end location 
+    j=5 #end location
     if display_raw_data.lower() !='yes':
         print("Thank you, bye")
     else:
         print(df.iloc[i:j])
         i+=5
         j+=5
-        
+
     while True:
         display_raw_data= input("Do you want to see 5 more lines?yes/no\n")
         if display_raw_data.lower()!='yes':
@@ -213,8 +213,8 @@ def display_raw_data(df):
             i+=5
             j+=5
             continue
-        
-    
+
+
 def main():
     while True:
         city, month, day = get_filters()
