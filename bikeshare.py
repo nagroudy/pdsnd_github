@@ -121,7 +121,7 @@ def station_stats(df):
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
-    #Concatenation of start and end of stattions into a new column
+    #Concatenation of start and end of stations into a new column
     df['Trip Direction']= 'From ' + df['Start Station'] +' '+'To '+df['End Station']
     # TO DO: display most commonly used start station
     common_start = df['Start Station'].mode()[0]
