@@ -199,6 +199,7 @@ def display_raw_data(df):
     j=5 #end location 
     if display_raw_data.lower() !='yes':
         print("Thank you, bye")
+        return
     else:
         print(df.iloc[i:j])
         i+=5
