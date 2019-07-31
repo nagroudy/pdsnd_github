@@ -194,10 +194,10 @@ def user_stats(df):
 def display_raw_data(df):
     """Displays raw data upon user's request"""
     #Get input from user whether they want to see the raw data or not
-    display_raw_data= input("Do you want to see raw data?yes/no\n")
+    raw_data= input("Do you want to see raw data?yes/no\n")
     i=0 #start location to display raw data
     j=5 #end location 
-    if display_raw_data.lower() !='yes':
+    if raw_data.lower() !='yes':
         print("Thank you, bye")
         return
     else:
@@ -206,8 +206,8 @@ def display_raw_data(df):
         j+=5
         
     while True:
-        display_raw_data= input("Do you want to see 5 more lines?yes/no\n")
-        if display_raw_data.lower()!='yes':
+        more_raw_data= input("Do you want to see 5 more lines?yes/no\n")
+        if more_raw_data.lower()!='yes':
             break
         else:
             print(df.iloc[i:j])
